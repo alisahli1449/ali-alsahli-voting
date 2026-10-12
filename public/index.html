@@ -1,0 +1,198 @@
+public/index.html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>منصة التصويت التفاعلي</title>
+
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+  <main>
+
+    <header>
+      <h1 id="title">
+        منصة التقييم والتصويت التفاعلي
+      </h1>
+      <p>التقييم المباشر للمجموعات</p>
+    </header>
+
+    <section class="card">
+      <h2>حالة التصويت</h2>
+
+      <p id="status">
+        جارٍ تحميل البيانات...
+      </p>
+
+      <div id="results"></div>
+    </section>
+
+    <section class="card">
+
+      <h2>المشاركة في التصويت</h2>
+
+      <form id="vote">
+
+        <label>
+          رمز المشاركة
+          <input
+            name="code"
+            required
+            autocomplete="off">
+        </label>
+
+        <label id="nameRow" hidden>
+          اسم المشارك
+          <input name="name">
+        </label>
+
+        <label>
+          درجة التقييم من 1 إلى 10
+          <input
+            name="score"
+            type="number"
+            min="1"
+            max="10"
+            required>
+        </label>
+
+        <button type="submit">
+          إرسال التقييم
+        </button>
+
+      </form>
+
+      <p id="voteMsg"></p>
+
+    </section>
+
+    <section class="card">
+
+      <h2>لوحة إدارة المدرب</h2>
+
+      <div id="loginArea">
+
+        <form id="login">
+
+          <label>
+            كلمة مرور المدرب
+            <input
+              name="password"
+              type="password"
+              required>
+          </label>
+
+          <button type="submit">
+            تسجيل الدخول
+          </button>
+
+        </form>
+
+      </div>
+
+      <div id="adminArea" hidden>
+
+        <form id="config">
+
+          <label>
+            عنوان المنصة
+            <input name="title">
+          </label>
+
+          <label>
+            أسماء المجموعات
+            <textarea
+              name="groups"
+              rows="4"></textarea>
+          </label>
+
+          <label>
+            نوع التصويت
+
+            <select name="mode">
+              <option value="anonymous">
+                تصويت مجهول
+              </option>
+
+              <option value="named">
+                تصويت بالاسم
+              </option>
+            </select>
+
+          </label>
+
+          <button type="submit">
+            حفظ الإعدادات
+          </button>
+
+        </form>
+
+        <form id="codes">
+
+          <label>
+            عدد المشاركين
+
+            <input
+              name="count"
+              type="number"
+              min="1"
+              max="300"
+              required>
+          </label>
+
+          <button type="submit">
+            إنشاء رموز المشاركة
+          </button>
+
+        </form>
+
+        <textarea
+          id="codeList"
+          rows="4"
+          readonly
+          placeholder="ستظهر رموز المشاركين هنا">
+        </textarea>
+
+        <label>
+          المجموعة النشطة
+
+          <select id="groupSelect"></select>
+        </label>
+
+        <button
+          id="activate"
+          type="button">
+          بدء التصويت
+        </button>
+
+        <button
+          id="close"
+          type="button">
+          إغلاق التصويت
+        </button>
+
+        <button
+          id="reset"
+          type="button"
+          class="danger">
+          إعادة ضبط التصويت
+        </button>
+
+      </div>
+
+      <p id="adminMsg"></p>
+
+    </section>
+
+  </main>
+
+  <script src="/app.js"></script>
+
+</body>
+</html>
