@@ -1,0 +1,222 @@
+/* إعدادات الصفحة */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: Tahoma, Arial, sans-serif;
+  direction: rtl;
+  background: #f1f5f9;
+  color: #1e293b;
+  line-height: 1.8;
+}
+
+/* الحاوية الرئيسية */
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* عنوان المنصة */
+header {
+  background: linear-gradient(135deg, #123c69, #2563eb);
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+  border-radius: 16px;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+header p {
+  margin-top: 10px;
+  font-size: 17px;
+}
+
+/* البطاقات */
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+}
+
+.card h2 {
+  color: #123c69;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 12px;
+  margin-top: 0;
+}
+
+/* النماذج */
+form {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #334155;
+}
+
+/* حقول الإدخال */
+input,
+select,
+textarea {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 7px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  font-size: 16px;
+  font-family: inherit;
+  background: #ffffff;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* الأزرار */
+button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 9px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 5px;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* زر الحذف وإعادة الضبط */
+button.danger {
+  background: #dc2626;
+}
+
+button.danger:hover {
+  background: #b91c1c;
+}
+
+/* حالة التصويت */
+#status {
+  background: #eff6ff;
+  color: #1e40af;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* نتائج التصويت */
+#results {
+  margin-top: 20px;
+}
+
+#results > div {
+  margin-bottom: 15px;
+}
+
+/* رسائل النظام */
+#voteMsg,
+#adminMsg {
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 8px;
+}
+
+/* رموز المشاركة */
+#codeList {
+  background: #f8fafc;
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* إخفاء العناصر */
+[hidden] {
+  display: none !important;
+}
+
+/* الجداول */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: white;
+}
+
+th {
+  background: #123c69;
+  color: white;
+  padding: 12px;
+}
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+/* التوافق مع الجوال */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  header {
+    padding: 25px 15px;
+  }
+
+  header h1 {
+    font-size: 23px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  button {
+    width: 100%;
+    margin: 6px 0;
+  }
+
+  table {
+    font-size: 13px;
+  }
+
+  th,
+  td {
+    padding: 8px;
+  }
+}
