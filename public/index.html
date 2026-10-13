@@ -1,198 +1,43 @@
-public/index.html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
-  <title>منصة التصويت التفاعلي</title>
-
-  <link rel="stylesheet" href="/style.css">
-</head>
-
-<body>
-
-  <main>
-
-    <header>
-      <h1 id="title">
-        منصة التقييم والتصويت التفاعلي
-      </h1>
-      <p>التقييم المباشر للمجموعات</p>
-    </header>
-
-    <section class="card">
-      <h2>حالة التصويت</h2>
-
-      <p id="status">
-        جارٍ تحميل البيانات...
-      </p>
-
-      <div id="results"></div>
-    </section>
-
-    <section class="card">
-
-      <h2>المشاركة في التصويت</h2>
-
-      <form id="vote">
-
-        <label>
-          رمز المشاركة
-          <input
-            name="code"
-            required
-            autocomplete="off">
-        </label>
-
-        <label id="nameRow" hidden>
-          اسم المشارك
-          <input name="name">
-        </label>
-
-        <label>
-          درجة التقييم من 1 إلى 10
-          <input
-            name="score"
-            type="number"
-            min="1"
-            max="10"
-            required>
-        </label>
-
-        <button type="submit">
-          إرسال التقييم
-        </button>
-
-      </form>
-
-      <p id="voteMsg"></p>
-
-    </section>
-
-    <section class="card">
-
-      <h2>لوحة إدارة المدرب</h2>
-
-      <div id="loginArea">
-
-        <form id="login">
-
-          <label>
-            كلمة مرور المدرب
-            <input
-              name="password"
-              type="password"
-              required>
-          </label>
-
-          <button type="submit">
-            تسجيل الدخول
-          </button>
-
-        </form>
-
-      </div>
-
-      <div id="adminArea" hidden>
-
-        <form id="config">
-
-          <label>
-            عنوان المنصة
-            <input name="title">
-          </label>
-
-          <label>
-            أسماء المجموعات
-            <textarea
-              name="groups"
-              rows="4"></textarea>
-          </label>
-
-          <label>
-            نوع التصويت
-
-            <select name="mode">
-              <option value="anonymous">
-                تصويت مجهول
-              </option>
-
-              <option value="named">
-                تصويت بالاسم
-              </option>
-            </select>
-
-          </label>
-
-          <button type="submit">
-            حفظ الإعدادات
-          </button>
-
-        </form>
-
-        <form id="codes">
-
-          <label>
-            عدد المشاركين
-
-            <input
-              name="count"
-              type="number"
-              min="1"
-              max="300"
-              required>
-          </label>
-
-          <button type="submit">
-            إنشاء رموز المشاركة
-          </button>
-
-        </form>
-
-        <textarea
-          id="codeList"
-          rows="4"
-          readonly
-          placeholder="ستظهر رموز المشاركين هنا">
-        </textarea>
-
-        <label>
-          المجموعة النشطة
-
-          <select id="groupSelect"></select>
-        </label>
-
-        <button
-          id="activate"
-          type="button">
-          بدء التصويت
-        </button>
-
-        <button
-          id="close"
-          type="button">
-          إغلاق التصويت
-        </button>
-
-        <button
-          id="reset"
-          type="button"
-          class="danger">
-          إعادة ضبط التصويت
-        </button>
-
-      </div>
-
-      <p id="adminMsg"></p>
-
-    </section>
-
-  </main>
-
-  <script src="/app.js"></script>
-
-</body>
-</html>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#172555"><title>نبض | التصويت الفوري</title>
+<style>
+:root{--navy:#172555;--blue:#4869ed;--purple:#805ce5;--ink:#23304b;--muted:#7988a2;--line:#e5eafa;--green:#0d956f}*{box-sizing:border-box}body{margin:0;background:#f7f9fe;color:var(--ink);font-family:Tahoma,Arial,sans-serif;line-height:1.6}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.55;cursor:not-allowed}[hidden]{display:none!important}.wrap{max-width:1040px;margin:auto;padding:0 18px}.nav{background:white;border-bottom:1px solid var(--line)}.nav .wrap{height:73px;display:flex;align-items:center;justify-content:space-between}.brand{font-size:22px;color:var(--navy);font-weight:900}.brand .mark{display:inline-grid;place-items:center;width:40px;height:40px;margin-left:9px;color:white;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--purple))}.online{background:#e8f9f3;color:#0d926e;border-radius:30px;padding:7px 12px;font-size:12px;font-weight:700}.hero{margin:24px 0 16px;border-radius:23px;padding:29px 32px;color:white;background:linear-gradient(120deg,#142454,#31498f 62%,#6651bd);box-shadow:0 13px 30px #263d7f26}.eyebrow{font-size:12px;color:#dce2ff}.hero h1{font-size:clamp(25px,4vw,36px);margin:8px 0 3px}.hero p{color:#e0e7ff;font-size:14px;margin:0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-bottom:19px}.stat,.card{background:white;border:1px solid var(--line);box-shadow:0 8px 28px #1725550a}.stat{padding:15px;border-radius:16px}.stat small{color:var(--muted);display:block;font-size:11px}.stat b{font-size:24px;color:var(--navy)}.cols{display:grid;grid-template-columns:1fr 1fr;gap:17px;align-items:start}.card{border-radius:20px;padding:22px;margin-bottom:17px}.head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:18px}.head h2{margin:0;font-size:19px;color:var(--navy)}.pill{font-size:11px;padding:7px 12px;border-radius:99px;background:#eff2f8;color:#7b8799;font-weight:800}.pill.on{background:#e5faf0;color:#058562}.status{display:flex;align-items:center;gap:12px;background:#f5f7fd;border:1px solid #edf0fa;border-radius:14px;padding:14px;margin-bottom:20px}.status .icon{display:grid;place-items:center;background:#e5eafa;color:#5c69d3;border-radius:13px;width:42px;height:42px;font-size:23px;flex:none}.status strong{display:block;font-size:14px}.status small{color:var(--muted);font-size:12px}label{display:block;font-size:13px;font-weight:bold;margin:13px 0}input,select,textarea{display:block;width:100%;padding:12px;margin-top:8px;min-height:49px;border-radius:12px;border:1px solid #dce2f0;color:var(--ink);background:white;font-size:16px;outline:none}input:focus,select:focus,textarea:focus{border-color:#6a81f3;box-shadow:0 0 0 3px #dfe6ff}textarea{min-height:87px}.scores{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.score{height:53px;border-radius:11px;border:1px solid #dfe5f3;background:#f9fbff;color:#36517f;font-size:20px;font-weight:900}.score.active{color:white;background:linear-gradient(135deg,#416ef4,#8261ec);border-color:transparent;box-shadow:0 7px 15px #6677f441}.scale{display:flex;justify-content:space-between;color:var(--muted);font-size:10px;margin:7px 0 17px}.btn{border:0;border-radius:12px;padding:12px 17px;min-height:45px;font-weight:bold;background:#eef1fd;color:#3b55ad}.btn.primary{background:linear-gradient(125deg,#416bf5,#695fe9);color:white}.btn.danger{background:#fff0f2;color:#ba3c4c}.btn.full{width:100%}.btn.sm{font-size:12px;min-height:39px;padding:8px 12px}.msg{margin-top:9px;font-size:13px;min-height:18px;color:var(--green);font-weight:bold}.msg.bad{color:#c43f52}.hint{font-size:12px;color:var(--muted);margin:0 0 16px}.empty{text-align:center;padding:30px 14px;border:1px dashed #dbe3f5;border-radius:14px;background:#f9fbff;color:var(--muted);font-size:12px}.empty .emoji{font-size:30px;display:block}.result{padding:16px 0;border-bottom:1px solid #edf0f7}.result:last-child{border-bottom:0}.rrow{display:flex;justify-content:space-between;align-items:center;gap:6px;font-size:13px}.rrow b{font-size:14px}.average{color:#4669e9;font-size:18px;font-weight:900;direction:ltr;white-space:nowrap}.bar{height:9px;background:#eef1fc;border-radius:30px;overflow:hidden;margin:10px 0 5px}.bar span{display:block;height:100%;background:linear-gradient(90deg,#4969ed,#9265ed);border-radius:30px}.subrow{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}.winner{margin-top:14px;padding:14px;background:#fff9e8;border:1px solid #f3dfae;color:#846018;border-radius:14px;font-weight:800}details summary{cursor:pointer;list-style:none;font-size:17px;font-weight:900;color:var(--navy)}details summary::-webkit-details-marker{display:none}.adminBody{border-top:1px solid var(--line);margin-top:16px;padding-top:16px}.section{padding:16px;border-radius:14px;border:1px solid #e8ecf7;background:#fafbff;margin:14px 0}.section h3{margin:0;font-size:15px}.section p{font-size:12px;color:var(--muted);margin:5px 0 12px}.actions{display:flex;flex-wrap:wrap;gap:8px}.codebox{direction:ltr;text-align:left;font-family:monospace;font-size:13px}.footer{color:#9ba5bb;text-align:center;font-size:11px;padding:20px}.copybtn{margin-top:8px}@media(max-width:720px){.cols{grid-template-columns:1fr}.hero{margin:14px 0 13px;padding:25px 19px}.hero h1{font-size:26px}.stats{gap:8px}.stat{padding:11px}.stat b{font-size:20px}.card{padding:19px}.head h2{font-size:18px}}@media(max-width:370px){.wrap{padding:0 11px}.stat small{font-size:10px}.stat b{font-size:17px}.score{font-size:18px;height:48px}.scores{gap:5px}}
+</style></head>
+<body><nav class="nav"><div class="wrap"><div class="brand"><span class="mark">✦</span>نَبض</div><span class="online" id="online">● متصل</span></div></nav>
+<main class="wrap"><section class="hero"><div class="eyebrow">✦ التصويت التفاعلي للورش التدريبية</div><h1 id="title">صوّتك يصنع الفرق</h1><p>قيّم المجموعات مباشرة من جوالك، وتابع النتائج لحظة بلحظة.</p></section>
+<div class="stats"><div class="stat"><small>عدد المجموعات</small><b id="groupNum">٣</b></div><div class="stat"><small>إجمالي التقييمات</small><b id="voteNum">٠</b></div><div class="stat"><small>الجولة الحالية</small><b id="roundNum">—</b></div></div>
+<div class="cols"><div><section class="card"><div class="head"><h2>شارك بتقييمك</h2><span class="pill" id="statusPill">بانتظار البدء</span></div><div class="status"><span class="icon">◉</span><div><strong id="status">جارٍ تحميل حالة التصويت...</strong><small id="statusHint">انتظر فتح التصويت من المدرب</small></div></div>
+<form id="voteForm" autocomplete="off"><label>رمز المشاركة<input name="code" id="code" placeholder="الرمز الذي استلمته من المدرب" autocapitalize="characters" required></label><label id="nameRow" hidden>اسم المشارك<input id="personName" name="name" placeholder="اكتب اسمك"></label><label>درجة تقييم المجموعة</label><div class="scores" id="scores"></div><div class="scale"><span>١ = يحتاج للتطوير</span><span>١٠ = ممتاز</span></div><button class="btn primary full" id="voteBtn" type="submit" disabled>بانتظار فتح التصويت</button><div class="msg" id="voteMsg" role="status"></div></form></section><section class="card"><div class="head"><h2 style="font-size:16px">شارك رابط التصويت</h2></div><p class="hint">أرسل الرابط للمتدربين ليشاركوا مباشرة من جوالاتهم.</p><button class="btn sm" type="button" id="copyLink">نسخ رابط المنصة ⧉</button><div class="msg" id="linkMsg"></div></section></div>
+<div><section class="card"><div class="head"><h2>نتائج المجموعات</h2><span class="pill">تحديث مباشر</span></div><p class="hint">تظهر المتوسطات تلقائياً بعد بدء المشاركة.</p><div id="results"><div class="empty"><span class="emoji">▤</span>لا توجد تقييمات بعد</div></div><div id="winner" class="winner" hidden></div></section>
+<details class="card" id="adminDetails"><summary>⚙ لوحة تحكم المدرب ▾</summary><div class="adminBody"><div id="loginArea"><p class="hint">هذه اللوحة مخصصة للمدرب فقط.</p><form id="loginForm"><label>كلمة مرور المدرب<input type="password" id="password" required autocomplete="current-password"></label><button class="btn primary full" type="submit">دخول لوحة التحكم</button></form></div><div id="adminArea" hidden>
+<div class="section"><h3>إدارة الجولة</h3><p>اختر المجموعة التي تريد فتح التصويت لها.</p><label>المجموعة<select id="groupSelect"></select></label><div class="actions"><button id="activate" class="btn primary" type="button">▶ بدء التصويت</button><button id="close" class="btn" type="button">■ إغلاق الجولة</button></div></div>
+<div class="section"><h3>رموز المشاركين</h3><p>رمز لكل متدرب، صالح مرة لكل مجموعة.</p><form id="codesForm"><label>عدد المتدربين<input type="number" name="count" value="30" min="1" max="300" required></label><button class="btn sm" type="submit">إنشاء رموز المشاركة</button></form><textarea class="codebox" id="codeList" readonly rows="5" placeholder="تظهر الرموز هنا"></textarea><button class="btn sm copybtn" type="button" id="copyCodes">نسخ الرموز</button></div>
+<div class="section"><h3>إعدادات التصويت</h3><p>يُفضّل ضبط المجموعات قبل بدء أول جولة.</p><form id="configForm"><label>عنوان المنصة<input id="editTitle" name="title" required></label><label>أسماء المجموعات (كل مجموعة بسطر)<textarea id="groups" name="groups" required rows="3"></textarea></label><label>نوع التصويت<select id="mode" name="mode"><option value="anonymous">بدون اسم</option><option value="named">بالاسم</option></select></label><button class="btn sm" type="submit">حفظ الإعدادات</button></form></div>
+<div class="section"><h3>إعادة بدء فعالية جديدة</h3><p>سيحذف جميع نتائج التصويت ورموز المشاركة.</p><button class="btn danger sm" id="reset" type="button">إعادة ضبط التصويت</button></div><button class="btn sm" id="logout" type="button">تسجيل خروج المدرب</button></div><div class="msg" id="adminMsg" role="status"></div></div></details></div></div></main><div class="footer">منصة نبض • تصميم مناسب للجوال والكمبيوتر</div>
+<script>
+'use strict';
+(function(){
+const $=id=>document.getElementById(id);let state=null,token='',selected=null,busy=false;
+const num=n=>Number(n||0).toLocaleString('ar-SA');
+function message(id,s,bad=false){$(id).textContent=s;$(id).className='msg'+(bad?' bad':'')}
+async function api(endpoint,body,auth=false){const opts={method:body===undefined?'GET':'POST',headers:{Accept:'application/json'}};if(body!==undefined){opts.headers['Content-Type']='application/json';opts.body=JSON.stringify(body)}if(auth&&token)opts.headers['x-admin-token']=token;const r=await fetch('/api/'+endpoint,opts);const data=await r.json().catch(()=>({error:'تعذّر الاتصال بالخادم'}));if(!r.ok)throw Error(data.error||'تعذّر تنفيذ الطلب');return data}
+for(let n=1;n<=10;n++){const b=document.createElement('button');b.type='button';b.className='score';b.dataset.score=n;b.textContent=num(n);b.setAttribute('aria-label','التقييم '+n);b.setAttribute('aria-pressed','false');b.onclick=()=>{selected=n;Array.from($('scores').children).forEach(x=>{const y=Number(x.dataset.score)===n;x.classList.toggle('active',y);x.setAttribute('aria-pressed',y?'true':'false')});message('voteMsg','')};$('scores').appendChild(b)}
+function drawResults(s){const root=$('results');root.replaceChildren();const seen=s.counts.some(x=>x>0);if(!seen){root.innerHTML='<div class="empty"><span class="emoji">▤</span>لم تُسجل تقييمات بعد</div>';$('winner').hidden=true;return}let best=-1;let leaders=[];s.groups.forEach((name,i)=>{const count=s.counts[i],avg=s.averages[i];const item=document.createElement('div');item.className='result';const first=document.createElement('div');first.className='rrow';const n=document.createElement('b');n.textContent=name;const a=document.createElement('span');a.className='average';a.textContent=avg==null?'—':Number(avg).toFixed(2)+' / 10';first.append(n,a);const bar=document.createElement('div');bar.className='bar';const fill=document.createElement('span');fill.style.width=(Number(avg)||0)*10+'%';bar.append(fill);const lower=document.createElement('div');lower.className='subrow';const countText=document.createElement('span');countText.textContent=num(count)+' تقييم';const stage=document.createElement('span');stage.textContent=s.completed[i]?'اكتمل':s.active===i?'قيد التصويت':'بانتظار الجولة';lower.append(countText,stage);item.append(first,bar,lower);root.append(item);if(count){if(Number(avg)>best){best=Number(avg);leaders=[name]}else if(Number(avg)===best)leaders.push(name)}});$('winner').hidden=!leaders.length;if(leaders.length)$('winner').textContent=(s.completed.every(Boolean)?'🏆 المجموعة الفائزة: ':'★ المجموعة المتصدرة: ')+leaders.join('، ')+' ('+best.toFixed(2)+' / 10)'}
+function draw(s){state=s;$('title').textContent=s.title;$('groupNum').textContent=num(s.groups.length);$('voteNum').textContent=num(s.counts.reduce((a,b)=>a+b,0));const active=s.active>=0;$('roundNum').textContent=active?num(s.active+1):'—';$('statusPill').textContent=active?'التصويت مفتوح':'بانتظار البدء';$('statusPill').className='pill'+(active?' on':'');$('status').textContent=active?'التصويت الآن: '+s.groups[s.active]:'التصويت مغلق حاليًا';$('statusHint').textContent=active?'اختر الدرجة ثم اضغط إرسال':'انتظر فتح الجولة من المدرب';$('voteBtn').disabled=!active||busy;$('voteBtn').textContent=active?'إرسال تقييمي ←':'بانتظار فتح التصويت';$('nameRow').hidden=s.mode!=='named';$('personName').required=s.mode==='named';Array.from($('scores').children).forEach(b=>b.disabled=!active);drawResults(s);if(token){const select=$('groupSelect'),v=select.value;select.replaceChildren();s.groups.forEach((g,i)=>{const o=document.createElement('option');o.value=String(i);o.textContent=g+(s.completed[i]?' (مكتملة)':'');o.disabled=s.completed[i];select.appendChild(o)});if([...select.options].some(o=>o.value===v&&!o.disabled))select.value=v;else if(active)select.value=String(s.active)}}
+async function refresh(){try{draw(await api('state'));$('online').textContent='● متصل'}catch(e){$('online').textContent='● تعذّر الاتصال';$('status').textContent='تعذّر الاتصال بالخادم'}}
+$('voteForm').onsubmit=async e=>{e.preventDefault();if(!state||state.active<0)return message('voteMsg','التصويت مغلق',true);if(!selected)return message('voteMsg','اختر الدرجة أولاً',true);busy=true;$('voteBtn').disabled=true;try{const data=await api('vote',{code:$('code').value.trim(),name:$('personName').value.trim(),score:selected});message('voteMsg','✓ تم تسجيل تقييمك للمجموعة '+data.group);selected=null;[...$('scores').children].forEach(x=>{x.classList.remove('active');x.setAttribute('aria-pressed','false')});await refresh()}catch(err){message('voteMsg',err.message,true)}finally{busy=false;if(state)$('voteBtn').disabled=state.active<0}};
+$('loginForm').onsubmit=async e=>{e.preventDefault();try{const x=await api('login',{password:$('password').value});token=x.token;$('password').value='';$('loginArea').hidden=true;$('adminArea').hidden=false;$('editTitle').value=x.state.title;$('groups').value=x.state.groups.join('\n');$('mode').value=x.state.mode;$('codeList').value=x.state.codes.join('\n');draw(x.state);message('adminMsg','أهلاً بك في لوحة المدرب')}catch(err){message('adminMsg',err.message,true)}};
+async function action(p,b,s){try{const x=await api(p,b,true);message('adminMsg',s);await refresh();return x}catch(err){message('adminMsg',err.message,true);return null}}
+$('activate').onclick=()=>{const v=$('groupSelect').value;if(v==='')return message('adminMsg','اختر المجموعة',true);action('active',{index:Number(v)},'بدأ التصويت')};$('close').onclick=()=>action('close',{},'تم إغلاق الجولة');
+$('codesForm').onsubmit=async e=>{e.preventDefault();const n=Number(new FormData(e.target).get('count'));const x=await action('codes',{count:n},'تم إنشاء رموز المشاركة');if(x)$('codeList').value=x.codes.join('\n')};
+$('configForm').onsubmit=async e=>{e.preventDefault();const groups=$('groups').value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean);if(groups.length<2||groups.length>12)return message('adminMsg','أدخل من مجموعتين إلى ١٢',true);const x=await action('config',{groups,title:$('editTitle').value.trim(),mode:$('mode').value},'تم حفظ الإعدادات');if(x)draw(x)};
+$('reset').onclick=async()=>{if(!confirm('هل تريد حذف جميع النتائج والرموز؟'))return;if(!confirm('تأكيد أخير: حذف جميع بيانات التصويت؟'))return;const x=await action('reset',{confirm:'RESET'},'تمت إعادة ضبط التصويت');if(x)$('codeList').value=''};
+$('logout').onclick=()=>{token='';$('adminArea').hidden=true;$('loginArea').hidden=false;message('adminMsg','تم تسجيل الخروج')};
+async function copy(text,id){if(!text)return message(id,'لا يوجد شيء لنسخه',true);try{await navigator.clipboard.writeText(text);message(id,'✓ تم النسخ')}catch(e){message(id,'يمكنك تحديد النص ونسخه يدويًا',true)}}$('copyLink').onclick=()=>copy(location.href,'linkMsg');$('copyCodes').onclick=()=>copy($('codeList').value,'adminMsg');
+refresh();if(typeof EventSource!=='undefined'){try{const stream=new EventSource('/api/events');stream.onmessage=e=>{try{draw(JSON.parse(e.data))}catch(_){}}}catch(_){}}setInterval(refresh,9000);
+})();
+</script>
+</body></html>
