@@ -156,7 +156,7 @@ label{font-size:16px}.phone-input{height:66px;font-size:29px}
 (function(){
 const $=id=>document.getElementById(id);
 let state=null,token='',selected=null,busy=false,adminState=null;
-const num=n=>Number(n||0).toLocaleString('ar-SA');
+const num=n=>Number(n||0).toLocaleString('en-US');
 function message(id,s,bad=false){$(id).textContent=s||'';$(id).className='msg'+(bad?' bad':'')}
 function norm(v){return String(v||'').replace(/[٠-٩]/g,x=>String(x.charCodeAt(0)-0x660)).replace(/[۰-۹]/g,x=>String(x.charCodeAt(0)-0x6f0))}
 async function api(endpoint,body,auth=false){
