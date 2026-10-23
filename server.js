@@ -10,7 +10,29 @@ let state;
 try { state = {...defaults(),...JSON.parse(fs.readFileSync(DATA_FILE,'utf8'))}; } catch { state = defaults(); }
 const persist=()=>fs.writeFileSync(DATA_FILE,JSON.stringify(state,null,2));
 const clients=new Set();
-function snapshot(admin=false){ return {title:state.title,groups:state.groups,mode:state.mode,active:state.active,completed:state.completed,participantMode:state.codeMode==='phone4'?'phone4':'legacy',approvedCount:state.codeMode==='phone4'?state.codes.length:0,counts:state.votes.map(v=>v.length),sums:state.votes.map(v=>v.reduce((s,x)=>s+x.score,0)), averages:state.votes.map(v=>v.length?Number((v.reduce((s,x)=>s+x.score,0)/v.length).toFixed(2)):null),...(admin?{codes:state.codes,votes:state.votes}: {})}; }
+// Public clients and SSE receive only the information required to vote.
+// All vote totals, averages and individual votes are available ONLY through
+// password-protected admin routes and never through public endpoints.
+function snapshot(admin=false){
+ const view={
+  title:state.title,
+  groups:state.groups,
+  mode:state.mode,
+  active:state.active,
+  completed:state.completed,
+  participantMode:state.codeMode==='phone4'?'phone4':'legacy',
+  participantsReady:state.codeMode==='phone4'&&state.codes.length>0
+ };
+ if(!admin)return view;
+ return {...view,
+  approvedCount:state.codeMode==='phone4'?state.codes.length:0,
+  counts:state.votes.map(v=>v.length),
+  sums:state.votes.map(v=>v.reduce((s,x)=>s+x.score,0)),
+  averages:state.votes.map(v=>v.length?Number((v.reduce((s,x)=>s+x.score,0)/v.length).toFixed(2)):null),
+  codes:state.codes,
+  votes:state.votes
+ };
+}
 function broadcast(){ const line=`data: ${JSON.stringify(snapshot())}\n\n`; for(const c of clients){try {c.write(line)}catch{clients.delete(c)}} }
 function reply(res,status,obj){res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'});res.end(JSON.stringify(obj));}
 const readBody = req=>new Promise((resolve,reject)=>{let raw='';req.on('data',chunk=>{raw+=chunk;if(raw.length>100000){reject(Error('طلب كبير'));req.destroy()}});req.on('end',()=>{try{resolve(JSON.parse(raw||'{}'))}catch{reject(Error('JSON غير صالح'))}})});
