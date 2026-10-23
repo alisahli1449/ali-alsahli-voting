@@ -88,6 +88,8 @@ summary::-webkit-details-marker{display:none}
 .section{border-top:1px solid #38457a;padding:18px 0}
 .section h3{font-size:18px;margin:0 0 9px;color:#fff}
 .section:first-child{border-top:0}
+.private-results .approved{margin:12px 0 8px}
+.private-stat{font-size:42px!important}
 .section label{font-size:14px;margin:11px 0 7px}
 .section input,.section select,.section textarea{font-size:15px}
 .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
@@ -96,7 +98,7 @@ summary::-webkit-details-marker{display:none}
 .section-info{font-size:13px;color:#bac7e8;margin-top:7px}
 .alert{border-right:3px solid #dbb36c;background:#283255;border-radius:10px;padding:10px 12px;margin-top:12px;font-size:12px;color:#f0d3ac}
 .footer{max-width:1280px;padding:0 20px 28px;margin:auto;text-align:center;font-size:13px;color:#b0bde7}
-@media(max-width:1000px){.cols{grid-template-columns:1fr}.secondary-col{grid-template-columns:1fr 1fr;align-items:start}.secondary-col>.card{height:100%}}
+@media(max-width:1000px){.cols{grid-template-columns:1fr}.secondary-col{grid-template-columns:1fr;align-items:start}.secondary-col>.card{height:100%}}
 @media(max-width:740px){
 .wrap{padding:0 13px}.nav{padding:16px 0 13px}.brand{font-size:21px}.brand .mark{font-size:22px}.online{font-size:12px}
 .hero{margin:0 0 16px;border-radius:26px;padding:28px 19px 22px;min-height:315px;gap:25px}
@@ -118,8 +120,8 @@ label{font-size:16px}.phone-input{height:66px;font-size:29px}
 <body>
 <nav class="nav"><div class="wrap"><div class="brand"><span class="mark">✦</span>المدرب علي السهلي</div><span class="online" id="online">جاري الاتصال</span></div></nav>
 <main class="wrap">
-<section class="hero" aria-labelledby="headline"><div><div id="title" class="eyebrow">منصة التقييم والتصويت التفاعلي</div><h1 id="headline">صوتك يصنع الفرق</h1><p>شارك بتقييمك من جوالك، وتابع النتائج لحظة بلحظة.</p></div>
-  <div class="stats"><div class="stat"><b id="groupNum">7</b><small>مجموعات</small></div><div class="stat"><b id="voteNum">0</b><small>تقييمات</small></div><div class="stat"><b id="roundNum">—</b><small>الجولة الحالية</small></div></div>
+<section class="hero" aria-labelledby="headline"><div><div id="title" class="eyebrow">منصة التقييم والتصويت التفاعلي</div><h1 id="headline">صوتك يصنع الفرق</h1><p>شارك بتقييمك من جوالك بكل سهولة. النتائج متاحة للمدرب فقط.</p></div>
+  <div class="stats"><div class="stat"><b id="groupNum">7</b><small>مجموعات</small></div><div class="stat"><b class="private-stat" aria-hidden="true">🔒</b><small>النتائج خاصة</small></div><div class="stat"><b id="roundNum">—</b><small>الجولة الحالية</small></div></div>
 </section>
 <div class="cols"><div class="primary-col">
 <section class="card"><div class="head"><h2>شارك بتقييمك</h2><span class="pill" id="statusPill">بانتظار البدء</span></div>
@@ -135,10 +137,14 @@ label{font-size:16px}.phone-input{height:66px;font-size:29px}
 </section>
 <section class="card"><div class="head"><h2 style="font-size:22px">شارك رابط التصويت</h2></div><p class="hint">أرسل الرابط للمشاركين؛ كل متدرب يصوّت باستخدام آخر أربعة أرقام مسجلة لدى المدرب.</p><button class="btn sm" type="button" id="copyLink">نسخ رابط المنصة ⧉</button><div class="msg" id="linkMsg" role="status"></div></section>
 </div><div class="secondary-col">
-<section class="card"><div class="head"><h2>نتائج المجموعات</h2><span class="pill">مباشر</span></div><p class="hint">تُحدّث المتوسطات والنتائج تلقائيًا عند التصويت.</p><div id="results"><div class="empty"><span class="emoji">▤</span>لا توجد تقييمات بعد</div></div><div id="winner" class="winner" hidden></div></section>
 <details class="card" id="adminDetails"><summary>⚙ لوحة تحكم المدرب ▾</summary><div class="adminBody">
 <div id="loginArea"><p class="hint">هذه اللوحة مخصصة للمدرب فقط.</p><form id="loginForm"><label>كلمة مرور المدرب<input type="password" id="password" required autocomplete="current-password" /></label><button class="btn primary full" type="submit">دخول لوحة التحكم</button></form></div>
 <div id="adminArea" hidden>
+ <div class="section private-results" id="privateResults"><h3>🔒 نتائج المجموعات — للمدرب فقط</h3>
+ <p class="hint">هذه النتائج لا تظهر للمشاركين، وتُحدّث تلقائيًا أثناء التصويت.</p>
+ <div class="approved">إجمالي التقييمات: <strong id="adminVoteTotal">0</strong></div>
+ <div id="results"><div class="empty">لم تُسجَّل تقييمات بعد</div></div>
+ <div id="winner" class="winner" hidden></div></div>
 <div class="section"><h3>إدارة الجولة</h3><p>اختر المجموعة وافتح التصويت بعد اعتماد قائمة المشاركين.</p><label>المجموعة<select id="groupSelect"></select></label><div class="actions"><button id="activate" class="btn primary" type="button">▶ بدء التصويت</button><button id="close" class="btn" type="button">■ إغلاق الجولة</button></div></div>
 <div class="section"><h3>المشاركون المعتمدون — آخر أربعة أرقام</h3><p>أدخل آخر أربعة أرقام من رقم جوال كل متدرب، كل رقم في سطر مستقل. لا تدخل أرقام الجوال كاملة. لا تظهر القائمة للمتدربين.</p>
 <div class="approved" id="approvedStatus">لم تُعتمد قائمة المشاركين بعد</div>
@@ -194,8 +200,7 @@ function drawResults(s){
 }
 function draw(s){
  state=s;$('title').textContent=s.title;$('groupNum').textContent=num(s.groups.length);
- $('voteNum').textContent=num(s.counts.reduce((a,b)=>a+b,0));
- const approved=s.participantMode==='phone4'&&s.approvedCount>0;
+ const approved=s.participantMode==='phone4'&&(s.participantsReady===true||Number(s.approvedCount)>0);
  const active=s.active>=0&&approved;
  $('roundNum').textContent=active?num(s.active+1):'—';
  $('statusPill').textContent=active?'التصويت مفتوح':approved?'بانتظار البدء':'بانتظار اعتماد المشاركين';
@@ -205,16 +210,41 @@ function draw(s){
  $('nameRow').hidden=s.mode!=='named';$('personName').required=s.mode==='named';
  $('voteBtn').disabled=!active||busy;$('voteBtn').textContent=active?'إرسال التقييم ←':'بانتظار فتح التصويت';
  Array.from($('scores').children).forEach(x=>x.disabled=!active);
- drawResults(s);
  if(token){
   const menu=$('groupSelect'),previous=menu.value;menu.replaceChildren();
   s.groups.forEach((g,i)=>{const option=document.createElement('option');option.value=i;option.textContent=g+(s.completed[i]?' (مكتملة)':'');option.disabled=!!s.completed[i];menu.append(option)});
   if(Array.from(menu.options).some(o=>o.value===previous&&!o.disabled))menu.value=previous;
   else if(s.active>=0)menu.value=String(s.active);
-  if(adminState&&adminState.codes){$('approvedStatus').textContent=s.participantMode==='phone4'?'المعتمدون: '+num(s.approvedCount)+' مشارك':'لم تُعتمد قائمة الأرقام بعد'}
+  if(adminState&&adminState.codes){$('approvedStatus').textContent=s.participantMode==='phone4'?'المعتمدون: '+num(adminState.codes.length)+' مشارك':'لم تُعتمد قائمة الأرقام بعد'}
  }
 }
-async function refresh(){try{draw(await api('state'));$('online').textContent='متصل';$('online').classList.add('ok')}catch(e){$('online').textContent='تعذر الاتصال';$('online').classList.remove('ok');$('status').textContent='تعذر الاتصال بالخادم'}}
+function showAdminResults(s){
+ if(!token || !s || !Array.isArray(s.counts))return;
+ adminState=s;
+ $('adminVoteTotal').textContent=num(s.counts.reduce((a,b)=>a+Number(b||0),0));
+ drawResults(s);
+}
+let loadingPrivateResults=false;
+async function refreshAdmin(){
+ if(!token||loadingPrivateResults)return;
+ loadingPrivateResults=true;
+ try{
+  const data=await api('admin',undefined,true);
+  if(token)showAdminResults(data);
+ }catch(err){
+  if(token)message('adminMsg','تعذر تحديث النتائج الخاصة: '+err.message,true);
+ }finally{loadingPrivateResults=false}
+}
+async function refresh(){
+ try{
+  draw(await api('state'));
+  $('online').textContent='متصل';$('online').classList.add('ok');
+  if(token)await refreshAdmin();
+ }catch(e){
+  $('online').textContent='تعذر الاتصال';$('online').classList.remove('ok');
+  $('status').textContent='تعذر الاتصال بالخادم';
+ }
+}
 $('voteForm').onsubmit=async e=>{
  e.preventDefault();
  if(!state||state.active<0)return message('voteMsg','التصويت مغلق حاليًا',true);
@@ -235,7 +265,7 @@ $('loginForm').onsubmit=async e=>{
   $('editTitle').value=x.state.title;$('groups').value=x.state.groups.join('\n');$('mode').value=x.state.mode;
   $('lastFourList').value=x.state.participantMode==='phone4'?x.state.codes.join('\n'):'';
   $('approvedStatus').textContent=x.state.participantMode==='phone4'?'المعتمدون: '+num(x.state.codes.length)+' مشارك':'لم تُعتمد قائمة الأرقام بعد';
-  draw(x.state);message('adminMsg','أهلًا بك في لوحة المدرب');
+  draw(x.state);showAdminResults(x.state);message('adminMsg','أهلًا بك في لوحة المدرب');
  }catch(err){message('adminMsg',err.message,true)}
 };
 async function action(endpoint,body,success){
@@ -246,12 +276,12 @@ $('participantsForm').onsubmit=async e=>{
  e.preventDefault();
  const input=$('lastFourList').value.trim();
  const codes=input.split(/[\n,،;؛\t ]+/).map(s=>norm(s.trim())).filter(Boolean);
- if(!codes.length||codes.length>300)return message('adminMsg','أدخل من رقم واحد إلى ٣٠٠ رقم',true);
+ if(!codes.length||codes.length>300)return message('adminMsg','أدخل من رقم واحد إلى 300 رقم',true);
  const invalid=codes.findIndex(x=>!/^[0-9]{4}$/.test(x));
  if(invalid!==-1)return message('adminMsg','تأكد من كتابة أربعة أرقام في كل سطر. الرقم غير الصحيح: '+codes[invalid],true);
  const duplicates=codes.filter((x,i)=>codes.indexOf(x)!==i);
  if(duplicates.length)return message('adminMsg','هناك أرقام متطابقة: '+Array.from(new Set(duplicates)).join('، ')+'. يجب معالجتها أولًا',true);
- if(state&&state.counts.some(x=>x>0))return message('adminMsg','هناك نتائج تصويت حالية. احتفظ بها أولًا؛ لا يمكن تغيير القائمة قبل بدء فعالية جديدة.',true);
+ if(adminState&&Array.isArray(adminState.counts)&&adminState.counts.some(x=>x>0))return message('adminMsg','هناك نتائج تصويت حالية. احتفظ بها أولًا؛ لا يمكن تغيير القائمة قبل بدء فعالية جديدة.',true);
  if(adminState&&adminState.codes&&adminState.codes.length){
   if(!confirm('سيتم استبدال القائمة السابقة بعدد '+codes.length+' مشارك. هل تريد المتابعة؟'))return;
  }
@@ -262,9 +292,9 @@ $('activate').onclick=()=>{const v=$('groupSelect').value;if(v==='')return messa
 $('close').onclick=()=>action('close',{},'تم إغلاق الجولة');
 $('configForm').onsubmit=async e=>{
  e.preventDefault();const groups=$('groups').value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
- if(groups.length<2||groups.length>12)return message('adminMsg','أدخل من مجموعتين إلى ١٢ مجموعة',true);
+ if(groups.length<2||groups.length>12)return message('adminMsg','أدخل من مجموعتين إلى 12 مجموعة',true);
  const x=await action('config',{groups,title:$('editTitle').value.trim(),mode:$('mode').value},'تم حفظ الإعدادات');
- if(x)draw(x)
+ if(x){draw(x);showAdminResults(x)}
 };
 $('reset').onclick=async()=>{
  if(!confirm('هل تريد حذف جميع النتائج وقائمة المشاركين؟'))return;
@@ -272,11 +302,11 @@ $('reset').onclick=async()=>{
  const x=await action('reset',{confirm:'RESET'},'تمت إعادة ضبط التصويت. يمكنك تسجيل أرقام مشاركين جدد.');
  if(x){adminState={...(adminState||{}),codes:[]};$('lastFourList').value='';$('approvedStatus').textContent='لم تُعتمد قائمة الأرقام بعد'}
 };
-$('logout').onclick=()=>{token='';adminState=null;$('adminArea').hidden=true;$('loginArea').hidden=false;$('lastFourList').value='';message('adminMsg','تم تسجيل الخروج')};
+$('logout').onclick=()=>{token='';adminState=null;$('adminArea').hidden=true;$('loginArea').hidden=false;$('lastFourList').value='';$('results').replaceChildren();$('adminVoteTotal').textContent='0';message('adminMsg','تم تسجيل الخروج')};
 $('copyLink').onclick=async()=>{try{await navigator.clipboard.writeText(location.origin+location.pathname);message('linkMsg','✓ تم نسخ رابط التصويت')}catch(e){message('linkMsg','يمكنك نسخ الرابط من شريط العنوان',true)}};
 refresh();
 if(typeof EventSource!=='undefined'){
- try{const stream=new EventSource('/api/events');stream.onmessage=e=>{try{draw(JSON.parse(e.data))}catch(err){}}}catch(err){}
+ try{const stream=new EventSource('/api/events');stream.onmessage=e=>{try{draw(JSON.parse(e.data));if(token)refreshAdmin()}catch(err){}}}catch(err){}
 }
 setInterval(refresh,9000);
 })();
